@@ -12,12 +12,12 @@ function next(node, collection) {
 }
 
 function nodeAt(index, pointer, collection) {
-  let node = collection[pointer];
+  let currentNode = headNode(pointer, collection);
 
   for (let i = 0; i < index; i++) {
-    node = next(node, collection);
+    currentNode = next(currentNode, collection);
   }
-  return node;
+  return currentNode;
 }
 
 function addressAt(index, pointer, collection) {
@@ -31,10 +31,11 @@ function addressAt(index, pointer, collection) {
 
 function indexAt(node, collection, pointer) {
   let index = 0;
+  let currentNode = headNode(pointer, collection);
 
-  while (collection[pointer] !== node) {
+  while (currentNode !== node) {
     index += 1;
-    pointer = collection[pointer].next;
+    currentNode = next(currentNode, collection);
   }
   return index;
 }
